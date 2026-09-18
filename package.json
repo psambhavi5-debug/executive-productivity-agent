@@ -1,0 +1,17 @@
+{
+  "name": "executive-productivity-agent",
+  "version": "1.0.0",
+  "description": "Turns messy executive inputs (meetings, calendars, email, voice notes) into a daily action brief with a de-duplicated commitment register and Q&A.",
+  "main": "src/engine/index.js",
+  "scripts": {
+    "start": "node server.js",
+    "brief": "node cli/epa.js brief",
+    "ask": "node cli/epa.js ask",
+    "test": "node --test test/agent.test.js"
+  },
+  "engines": { "node": ">=18" },
+  "optionalDependencies": {
+    "@anthropic-ai/sdk": "^0.126.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Executive Productivity Agent</title>
+  <meta name="description" content="Turns messy executive inputs — meetings, calendars, email and voice notes — into a daily action brief." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗂️</text></svg>" />
+  <link rel="stylesheet" href="web/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">EPA</div>
+      <div>
+        <h1>Executive Productivity Agent</h1>
+        <p class="sub">Daily brief for <strong>Arjun Malhotra</strong> · VP Sales, Veridian</p>
+      </div>
+    </div>
+    <div class="clock" aria-label="Agent clock">
+      <span class="clock-label">As of</span>
+      <div class="days" id="days" role="tablist" aria-label="Day"></div>
+      <select id="time" aria-label="Time of day"></select>
+      <span class="mode" id="mode" title="Which engine answers questions">Offline agent</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="primary">
+      <nav class="tabs" id="tabs" role="tablist">
+        <button data-tab="brief" class="active">Daily brief</button>
+        <button data-tab="register">Commitments</button>
+        <button data-tab="flags">Flags</button>
+        <button data-tab="sources">Sources</button>
+        <button data-tab="how">How it works</button>
+      </nav>
+      <div id="view" class="view" aria-live="polite"></div>
+    </section>
+
+    <aside class="chat" aria-label="Ask the agent">
+      <div class="chat-head">
+        <h2>Ask the agent</h2>
+        <label class="toggle" id="claudeToggleWrap" hidden>
+          <input type="checkbox" id="claudeToggle" /> Use Claude
+        </label>
+      </div>
+      <div class="suggest" id="suggest"></div>
+      <div class="messages" id="messages"></div>
+      <form class="composer" id="composer">
+        <input id="q" autocomplete="off" placeholder="e.g. What did I promise Raghav?" aria-label="Question" />
+        <button type="submit">Ask</button>
+      </form>
+    </aside>
+  </main>
+
+  <div class="drawer" id="drawer" hidden>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <button class="close" id="drawerClose" aria-label="Close">×</button>
+      <div id="drawerBody"></div>
+    </div>
+  </div>
+  <div class="pop" id="pop" hidden></div>
+
+  <script src="data/sources.js"></script>
+  <script src="src/engine/util.js"></script>
+  <script src="src/engine/ingest.js"></script>
+  <script src="src/engine/temporal.js"></script>
+  <script src="src/engine/extract.js"></script>
+  <script src="src/engine/calendar.js"></script>
+  <script src="src/engine/reason.js"></script>
+  <script src="src/engine/brief.js"></script>
+  <script src="src/engine/qa.js"></script>
+  <script src="src/engine/agent.js"></script>
+  <script src="web/app.js"></script>
+</body>
+</html>
